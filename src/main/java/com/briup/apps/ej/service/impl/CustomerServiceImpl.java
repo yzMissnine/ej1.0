@@ -19,4 +19,28 @@ public class CustomerServiceImpl implements ICustomerService {
         CustomerExample example = new CustomerExample();
         return customerMapper.selectByExample(example);
     }
+    //插入数据
+    @Override
+    public int insert(Customer record) throws Exception{
+        return customerMapper.insert(record);
+    }
+    @Override
+    public int deleteById(Long id) throws Exception{
+        Customer customer = customerMapper.selectByPrimaryKey(id);
+        if (customer == null){
+            throw new Exception("删除的客户不存在");
+
+        }
+        else {
+            return customerMapper.deleteByPrimaryKey(id);
+        }
+    }
+    @Override
+    public int updateById(Customer record) throws Exception{
+        return customerMapper.updateByPrimaryKey(record);
+    }
+    @Override
+    public Customer findById(Long id){
+        return customerMapper.selectByPrimaryKey(id);
+    }
 }
