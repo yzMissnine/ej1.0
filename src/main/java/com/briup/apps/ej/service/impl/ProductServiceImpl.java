@@ -13,7 +13,7 @@ import java.util.List;
 @Service
  public class ProductServiceImpl implements IProductService {
     @Resource
-    public ProductMapper productMapper;
+    private ProductMapper productMapper;
     @Override
     public List<Product> findAll(){
         ProductExample example = new ProductExample();
