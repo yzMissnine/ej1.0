@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class CustomerController {
 
     @GetMapping("deleteById")
     @ApiOperation("通过ID删除")
-    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception{
+    public Message deleteById(@NotNull @ModelAttribute("id") Long id) throws Exception{
         customerService.deleteById(id);
         return MessageUtil.success("删除成功");
     }

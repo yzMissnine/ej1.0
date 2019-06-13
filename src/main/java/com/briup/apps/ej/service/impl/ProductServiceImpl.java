@@ -20,8 +20,34 @@ import java.util.List;
         return productMapper.selectByExample(example);
 
     }
-    //插入数据
     @Override
+    public void saveOrUpdate(Product product) throws Exception {
+        if(product.getId()!=null){
+            productMapper.updateByPrimaryKey(product);
+        } else {
+            product.setStatus("正常");
+            productMapper.insert(product);
+        }
+    }
+
+
+    @Override
+    public void deleteById(long id) throws Exception {
+        Product product = productMapper.selectByPrimaryKey(id);
+        if(product == null){
+            throw new Exception("要删除的产品                          不存在");
+        }
+        productMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            productMapper.deleteByPrimaryKey(id);
+        }
+    }
+    //插入数据
+    /*@Override
     public int insert(Product record) throws Exception{
         return productMapper.insert(record);
     }
@@ -43,6 +69,6 @@ import java.util.List;
     @Override
     public Product findById(Long id){
         return productMapper.selectByPrimaryKey(id);
-    }
+    }*/
 
 }

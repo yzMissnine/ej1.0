@@ -6,10 +6,13 @@ import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.service.impl.CommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -24,7 +27,30 @@ public class CommentController{
         List<Comment> list = commentService.findAll();
         return MessageUtil.success("success",list);
     }
-    @GetMapping("/insert")
+
+    @PostMapping("saveOrUpdate")
+    @ApiOperation("保存或者更新顾客信息")
+    public Message saveOrUpdate(Comment  comment) throws Exception{
+        commentService.saveOrUpdate(comment);
+        return MessageUtil.success("操作成功");
+    }
+
+    @GetMapping("deleteById")
+    @ApiOperation("通过ID删除")
+    public Message deleteById(@NotNull @ModelAttribute("id") Long id) throws Exception{
+        commentService.deleteById(id);
+        return MessageUtil.success("删除成功");
+    }
+
+
+
+
+
+
+
+
+
+ /*   @GetMapping("/insert")
     public Message insert(Comment record){
 
         try {

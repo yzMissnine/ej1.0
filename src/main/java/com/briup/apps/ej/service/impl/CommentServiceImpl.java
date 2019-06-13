@@ -7,7 +7,7 @@ import com.briup.apps.ej.bean.CommentExample;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
-
+import java.util.Date;
 /**
  * Created by lishanshan on 2019/6/12
  */
@@ -18,21 +18,44 @@ public class CommentServiceImpl implements ICommentService {
     private CommentMapper commentMapper;
 
 
-
     @Override
-    public List<Comment> findAll(){
+    public List<Comment> findAll() {
         CommentExample example = new CommentExample();
         return commentMapper.selectByExample(example);
 
     }
-    //插入数据
+
+    public void saveOrUpdate(Comment comment) throws Exception {
+        if(comment.getId()!=null){
+            commentMapper.updateByPrimaryKey(comment);
+        } else {
+            // 保存订单的时候自动将当前时间设置为订单时间
+            long time = new Date().getTime();
+            comment.setCommentTime(time);
+           commentMapper.insert(comment);
+        }
+    }
+
+
+
     @Override
+    public void deleteById(long id) throws Exception {
+        Comment comment = commentMapper.selectByPrimaryKey(id);
+        if (comment == null) {
+            throw new Exception("要删除的用户信息不存在");
+        }
+        commentMapper.deleteByPrimaryKey(id);
+    }
+}
+
+//插入数据
+ /*   @Override
     public int insert(Comment record) throws Exception{
         return commentMapper.insert(record);
     }
     @Override
     public int deleteById(Long id) throws Exception{
-        Comment order = commentMapper.selectByPrimaryKey(id);
+        Comment comment = commentMapper.selectByPrimaryKey(id);
         if (id == null){
             throw new Exception("删除的订单不存在");
 

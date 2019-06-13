@@ -6,7 +6,11 @@ import com.briup.apps.ej.bean.Comment;
  */
 public interface ICommentService {
     List<Comment> findAll();
-    int insert(Comment record) throws  Exception;
+
+    void saveOrUpdate(Comment customer) throws Exception;
+
+    void deleteById(long id) throws Exception;
+    /*int insert(Comment record) throws  Exception;
     int deleteById(Long id) throws Exception;
     int updateById(Comment record) throws Exception;
     Comment findById(Long id);
