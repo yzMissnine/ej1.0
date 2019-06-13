@@ -13,17 +13,55 @@ import java.util.List;
  */
 @Service
 public class CommentServiceImpl implements ICommentService {
+
     @Resource
     private CommentMapper commentMapper;
 
+
+
     @Override
+    public List<Comment> findAll(){
+        CommentExample example = new CommentExample();
+        return commentMapper.selectByExample(example);
+
+    }
+    //插入数据
+    @Override
+    public int insert(Comment record) throws Exception{
+        return commentMapper.insert(record);
+    }
+    @Override
+    public int deleteById(Long id) throws Exception{
+        Comment order = commentMapper.selectByPrimaryKey(id);
+        if (id == null){
+            throw new Exception("删除的订单不存在");
+
+        }
+        else {
+            return commentMapper.deleteByPrimaryKey(id);
+        }
+    }
+    @Override
+    public int updateById(Comment record) throws Exception{
+        return commentMapper.updateByPrimaryKey(record);
+    }
+    @Override
+    public Comment findById(Long id){
+        return commentMapper.selectByPrimaryKey(id);
+    }
+
+}
+
+
+   /* @Override
     public List<Comment> findAll() {
         CommentExample example = new CommentExample();
         return commentMapper.selectByExample(example);
     }
 
-    @Override
+   @Override
     public Comment findById(Long id) {
+
         return commentMapper.selectByPrimaryKey(id);
     }
 
@@ -41,6 +79,7 @@ public class CommentServiceImpl implements ICommentService {
     public int saveOrUpdate(Comment comment) throws Exception {
         return commentMapper.updateByPrimaryKey(comment);
     }
+   }
+*/
 
 
-}

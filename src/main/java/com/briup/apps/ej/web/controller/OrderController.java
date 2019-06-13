@@ -32,8 +32,8 @@ public class OrderController {
             return MessageUtil.error(e.getMessage());
         }
     }
-    @GetMapping("/delectById")
-    public Message delectById(Long id){
+    @GetMapping("/deleteById")
+    public Message deleteById(Long id){
         try {
             return MessageUtil.success("success", orderService.deleteById(id));
         } catch (Exception e) {
