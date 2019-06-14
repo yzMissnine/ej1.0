@@ -7,9 +7,8 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -17,6 +16,9 @@ import java.util.List;
 /**
  * Created by lishanshan on 2019/6/11
  */
+@Validated
+@RestController
+@RequestMapping("/comment")
 public class CommentController{
 
     @Autowired
