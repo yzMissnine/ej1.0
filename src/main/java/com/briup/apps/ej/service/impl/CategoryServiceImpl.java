@@ -16,24 +16,35 @@ import java.util.List;
 public class CategoryServiceImpl implements ICategoryService {
 @Resource
     private CategoryMapper categoryMapper;
-@Override
-    public int insert(Category category){
-    return categoryMapper.insert(category);
-}
-@Override
-    public int deleteByPrimaryKey(Long id){
-    return categoryMapper.deleteByPrimaryKey(id);
-}
-@Override
-    public int updateByPrimaryKey(Category category){
-    return categoryMapper.updateByPrimaryKey(category);
-}
-@Override
-    public List<Category> selectByExample(CategoryExample categoryExample){
-    return categoryMapper.selectByExample(new CategoryExample());
-}
-@Override
-    public Category selectByPrimaryKey(Long id){
-    return categoryMapper.selectByPrimaryKey(id);
-}
+    public List<Category> findAll() {
+        CategoryExample example = new CategoryExample();
+        return categoryMapper.selectByExample(example);
+    }
+
+    @Override
+    public void saveOrUpdate(Category category) throws Exception {
+        if(category.getId()!=null){
+            categoryMapper.updateByPrimaryKey(category);
+        } else {
+          //  category.setStatus("正常");
+            categoryMapper.insert(category);
+        }
+    }
+
+
+    @Override
+    public void deleteById(long id) throws Exception {
+        Category category = categoryMapper.selectByPrimaryKey(id);
+        if(category == null){
+            throw new Exception("要删除的用户信息不存在");
+        }
+        categoryMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            categoryMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

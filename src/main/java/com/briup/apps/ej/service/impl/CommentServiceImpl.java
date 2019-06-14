@@ -29,7 +29,7 @@ public class CommentServiceImpl implements ICommentService {
         if(comment.getId()!=null){
             commentMapper.updateByPrimaryKey(comment);
         } else {
-            // 保存订单的时候自动将当前时间设置为订单时间
+            // 保存评论的时候自动将当前时间设置为评论时间
             long time = new Date().getTime();
             comment.setCommentTime(time);
            commentMapper.insert(comment);
@@ -42,7 +42,7 @@ public class CommentServiceImpl implements ICommentService {
     public void deleteById(long id) throws Exception {
         Comment comment = commentMapper.selectByPrimaryKey(id);
         if (comment == null) {
-            throw new Exception("要删除的用户信息不存在");
+            throw new Exception("要删除的评论不存在");
         }
         commentMapper.deleteByPrimaryKey(id);
     }

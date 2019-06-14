@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class WaiterServiceImpI implements IWaiterService{
+public class WaiterServiceImpl implements IWaiterService{
     @Resource
     public WaiterMapper waiterMapper;
     @Override

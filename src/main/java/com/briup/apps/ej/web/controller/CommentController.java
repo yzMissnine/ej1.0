@@ -3,7 +3,6 @@ package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.service.ICommentService;
 import com.briup.apps.ej.bean.Comment;
-import com.briup.apps.ej.service.impl.CommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;

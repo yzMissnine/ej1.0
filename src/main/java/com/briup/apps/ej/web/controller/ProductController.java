@@ -24,14 +24,14 @@ public class ProductController{
 
 
     @GetMapping("findAll")
-    @ApiOperation("查询所有顾客信息")
+    @ApiOperation("查询所有产品信息")
     public Message findAll(){
         List<Product> list = productService.findAll();
         return MessageUtil.success("success",list);
     }
 
     @PostMapping("saveOrUpdate")
-    @ApiOperation("保存或者更新顾客信息")
+    @ApiOperation("保存或者更新顾产品信息")
     public Message saveOrUpdate(Product product) throws Exception{
         productService.saveOrUpdate(product);
         return MessageUtil.success("操作成功");
@@ -45,7 +45,7 @@ public class ProductController{
     }
 
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除顾客信息")
+    @ApiOperation("批量删除产品信息")
     public Message batchDelete(long[] ids) throws Exception{
         productService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
