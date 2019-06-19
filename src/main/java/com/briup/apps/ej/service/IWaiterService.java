@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IWaiterService {
     List<Waiter> findAll();
-    void saveOrUpdate(Waiter customer) throws Exception;
+    void saveOrUpdate(Waiter waiter) throws Exception;
 
     void deleteById(long id) throws Exception;
 

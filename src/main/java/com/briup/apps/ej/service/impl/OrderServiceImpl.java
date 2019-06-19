@@ -24,6 +24,14 @@ public class OrderServiceImpl implements IOrderService {
     public List<OrderExtend>  query(Long customerId,Long waiterId){
       return orderExtendMapper.query(customerId,waiterId);
     }
+
+    @Override
+    public Order loadOrder(long customer_id) throws Exception {
+
+
+        return orderMapper.selectByPrimaryKey(customer_id);
+    }
+
     @Override
     public List<Order> findAll() {
         OrderExample example = new OrderExample();

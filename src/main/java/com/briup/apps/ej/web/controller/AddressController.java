@@ -5,6 +5,7 @@ import com.briup.apps.ej.service.IAddressService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,13 @@ public class AddressController{
     public Message findAllAddress(){
         List<Address> list = addressService.findAllAddress();
         return MessageUtil.success("success",list);
+    }
+
+    @GetMapping("loadByCustomer_id")
+    @ApiOperation("通过ID查询")
+    public Message loadAddress(@ApiParam(value = "主键",required = true)@RequestParam("customer_id")@NotNull @ModelAttribute("customer_id") Long customer_id) throws Exception{
+        Address address = addressService.loadAddress(customer_id);
+        return MessageUtil.success("success",address);
     }
 
     @PostMapping("saveOrUpdate")

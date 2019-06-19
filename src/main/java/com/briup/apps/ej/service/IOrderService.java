@@ -15,6 +15,8 @@ public interface IOrderService {
     void deleteById(long id) throws Exception;
 
     void batchDelete(long[] ids) throws Exception;
+
+    Order loadOrder(long customer_id) throws Exception;
 }
    /* int insert(Order record) throws  Exception;
     int deleteById(Long id) throws Exception;

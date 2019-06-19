@@ -8,7 +8,6 @@ import com.briup.apps.ej.dao.AddressMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 /**
  * Created by lishanshan on 2019/6/12
@@ -22,6 +21,13 @@ public class AddressServiceImpl implements IAddressService {
     public List<Address> findAllAddress() {
         AddressExample example = new AddressExample();
         return addressMapper.selectByExample(example);
+    }
+
+    @Override
+    public Address loadAddress(long customer_id) throws Exception {
+
+
+        return addressMapper.selectByPrimaryKey(customer_id);
     }
 
     @Override

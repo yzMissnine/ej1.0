@@ -81,16 +81,17 @@ public class CommentController{
             return MessageUtil.error(e.getMessage());
         }
     }
+
+   /* @PostMapping("/findAll")
+    public  Message findAll(){
+        return MessageUtil.success("success",commentService.findAll());
+
+    }
     @GetMapping("/findById")
     public Message findById(Long id) {
 
 
         return MessageUtil.success("success", commentService.findById(id));
-
-    }
-   /* @PostMapping("/findAll")
-    public  Message findAll(){
-        return MessageUtil.success("success",commentService.findAll());
 
     }
 

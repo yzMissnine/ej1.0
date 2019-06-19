@@ -8,6 +8,7 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class OrderController {
     @ApiOperation("查询订单信息，并且订单级联关键的属性")
     public Message query(Long customerId,Long waiterId){
         List<OrderExtend> list = orderService.query(customerId,waiterId);
-        return MessageUtil.success("success",list);
+        return MessageUtil.success("successdata",list);
     }
 
     @GetMapping("findAll")
@@ -37,6 +38,14 @@ public class OrderController {
         List<Order> list = orderService.findAll();
         return MessageUtil.success("success",list);
     }
+
+    @GetMapping("loadByCustomer_id")
+    @ApiOperation("通过ID查询")
+    public Message loadAddress(@ApiParam(value = "主键",required = true)@RequestParam("customer_id")@NotNull @ModelAttribute("customer_id") Long customer_id) throws Exception{
+        Order order = orderService.loadOrder(customer_id);
+        return MessageUtil.success("success",order);
+    }
+
 
     @PostMapping("saveOrUpdate")
     @ApiOperation("保存或者更新订单信息")
