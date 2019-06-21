@@ -28,10 +28,10 @@ public class AddressController{
         return MessageUtil.success("success",list);
     }
 
-    @GetMapping("loadByCustomer_id")
+    @GetMapping("query")
     @ApiOperation("通过ID查询")
-    public Message loadAddress(@ApiParam(value = "主键",required = true)@RequestParam("customer_id")@NotNull @ModelAttribute("customer_id") Long customer_id) throws Exception{
-        Address address = addressService.loadAddress(customer_id);
+    public Message query(@ApiParam(value = "主键",required = true)@RequestParam("customer_id")@NotNull @ModelAttribute("customer_id") Long customer_id) throws Exception{
+        Address address = addressService.query(customer_id);
         return MessageUtil.success("success",address);
     }
 

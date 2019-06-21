@@ -14,5 +14,5 @@ public interface IAddressService {
 
     void batchDeleteAddress(long[] ids) throws Exception;
 
-    Address loadAddress(long customer_id) throws Exception;
+    Address query(long customer_id) throws Exception;
 }

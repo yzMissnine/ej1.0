@@ -24,7 +24,7 @@ public class AddressServiceImpl implements IAddressService {
     }
 
     @Override
-    public Address loadAddress(long customer_id) throws Exception {
+    public Address query(long customer_id) throws Exception {
 
 
         return addressMapper.selectByPrimaryKey(customer_id);

@@ -25,12 +25,12 @@ public class OrderController {
     @Autowired
     private IOrderService orderService;
 
-    @GetMapping("query")
-    @ApiOperation("查询订单信息，并且订单级联关键的属性")
-    public Message query(Long customerId,Long waiterId){
-        List<OrderExtend> list = orderService.query(customerId,waiterId);
-        return MessageUtil.success("successdata",list);
-    }
+//    @GetMapping("query")
+//    @ApiOperation("查询订单信息，并且订单级联关键的属性")
+//    public Message query(Long customerId,Long waiterId){
+//        List<OrderExtend> list = orderService.query(customerId,waiterId);
+//        return MessageUtil.success("success",list);
+//    }
 
     @GetMapping("findAll")
     @ApiOperation("查询所有订单信息")
@@ -39,10 +39,10 @@ public class OrderController {
         return MessageUtil.success("success",list);
     }
 
-    @GetMapping("loadByCustomer_id")
+    @GetMapping("queryBasic")
     @ApiOperation("通过ID查询")
-    public Message loadAddress(@ApiParam(value = "主键",required = true)@RequestParam("customer_id")@NotNull @ModelAttribute("customer_id") Long customer_id) throws Exception{
-        Order order = orderService.loadOrder(customer_id);
+    public Message queryBasic(@ApiParam(value = "主键",required = true)@RequestParam("customer_id")@NotNull @ModelAttribute("customer_id") Long customer_id) throws Exception{
+        Order order = orderService.queryBasic(customer_id);
         return MessageUtil.success("success",order);
     }
 

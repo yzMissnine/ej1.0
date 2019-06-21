@@ -26,7 +26,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public Order loadOrder(long customer_id) throws Exception {
+    public Order queryBasic(long customer_id) throws Exception {
 
 
         return orderMapper.selectByPrimaryKey(customer_id);
